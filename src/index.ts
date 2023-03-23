@@ -7,7 +7,7 @@ import yargs from 'yargs';
 
 interface Args {
   port: number;
-  gateway: boolean;
+  nama: string;
 }
 
 const argv = yargs(process.argv.slice(2))
@@ -18,11 +18,11 @@ const argv = yargs(process.argv.slice(2))
       description: 'Angka port',
       default: 3000,
     },
-    gateway: {
-      alias: 'g',
-      type: 'boolean',
-      description: 'Mode gateway',
-      default: false,
+    nama: {
+      alias: 'n',
+      type: 'string',
+      description: 'Nama API',
+      default: 'Gateway',
     },
   })
   .help()
@@ -31,7 +31,6 @@ const argv = yargs(process.argv.slice(2))
 
 
 const app = express();
-const PORT = argv.port || 3000;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -65,7 +64,7 @@ const layananDua = async (): Promise<any> => {
   }
 }
 
-if (argv.gateway) {
+if (argv.nama === 'Gateway') {
   app.get('/api/layanan-satu', async (req, res) => {
     try {
       const data = await layananSatu();
@@ -92,6 +91,6 @@ if (argv.gateway) {
 }
 
 
-app.listen(PORT, () => {
-  console.log(`API ${argv.gateway ? 'Gateway' : 'Layanan'} sudah berjalan pada port ${PORT}`);
+app.listen(argv.port, () => {
+  console.log(`API ${argv.nama} sudah berjalan pada port ${argv.port}`);
 });
