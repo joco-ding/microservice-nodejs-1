@@ -2,6 +2,10 @@
 
 Ini merupakan seri pertama dari proyek API dengan Node JS dalam arsitektur Microservice
 
+Tautan bagian lain:
+
+[Bagian II](https://github.com/joco-ding/microservice-nodejs-2)
+
 ## Cara Install
 
     git clone https://github.com/joco-ding/microservice-nodejs-1.git && cd microservice-nodejs-1 &&  npm install
